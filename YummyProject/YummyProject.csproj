@@ -150,8 +150,13 @@
     <Compile Include="Migrations\202412171944019_Feature-Val.Designer.cs">
       <DependentUpon>202412171944019_Feature-Val.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501082006195_adminTableAdded.cs" />
+    <Compile Include="Migrations\202501082006195_adminTableAdded.Designer.cs">
+      <DependentUpon>202501082006195_adminTableAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Chef.cs" />
@@ -356,6 +361,7 @@
     <Content Include="Views\Feature\AddFeature.cshtml" />
     <Content Include="Views\AdminLayout\Index.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Default\DefaultProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -396,6 +402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202412171944019_Feature-Val.resx">
       <DependentUpon>202412171944019_Feature-Val.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501082006195_adminTableAdded.resx">
+      <DependentUpon>202501082006195_adminTableAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
