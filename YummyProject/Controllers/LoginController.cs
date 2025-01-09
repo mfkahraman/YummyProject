@@ -40,5 +40,13 @@ namespace YummyProject.Controllers
 
             return RedirectToAction("Index","DashBoard");
         }
+
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+
+            return RedirectToAction("SignIn");
+        }
     }
 }
