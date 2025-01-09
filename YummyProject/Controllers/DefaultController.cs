@@ -7,6 +7,7 @@ using YummyProject.Context;
 
 namespace YummyProject.Controllers
 {
+    [AllowAnonymous]
     public class DefaultController : Controller
     {
         private readonly YummyContext db = new YummyContext();

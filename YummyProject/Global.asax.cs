@@ -12,6 +12,9 @@ namespace YummyProject
     {
         protected void Application_Start()
         {
+            //Tüm projeyi authorize zorunlu hale getirdik
+            GlobalFilters.Filters.Add(new AuthorizeAttribute());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
