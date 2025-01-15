@@ -203,6 +203,20 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="wwwroot\images\events\1.jpg" />
+    <Content Include="wwwroot\images\events\2.jpg" />
+    <Content Include="wwwroot\images\events\3.jpg" />
+    <Content Include="wwwroot\images\events\4.jpg" />
+    <Content Include="wwwroot\images\products\doner.jpg" />
+    <Content Include="wwwroot\images\products\fajita.png" />
+    <Content Include="wwwroot\images\products\frans.png" />
+    <Content Include="wwwroot\images\products\risotto.jpg" />
+    <Content Include="wwwroot\images\products\tarator.jpg" />
+    <Content Include="wwwroot\images\products\tortilla.jpg" />
+    <Content Include="wwwroot\images\testimonials\1.jpg" />
+    <Content Include="wwwroot\images\testimonials\2.jpg" />
+    <Content Include="wwwroot\images\testimonials\3.jpg" />
+    <Content Include="wwwroot\images\testimonials\4.jpg" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -487,6 +501,9 @@
     <Content Include="Templates\login-form-02\login-form-02\scss\style.scss" />
     <Content Include="Views\Login\SignIn.cshtml" />
     <Content Include="Views\UILayout\SocialMedias.cshtml" />
+    <Content Include="Views\Default\DefaultWhyUs.cshtml" />
+    <Content Include="Views\Default\DefaultTestimonial.cshtml" />
+    <Content Include="Views\Default\DefaultEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

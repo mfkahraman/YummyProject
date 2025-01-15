@@ -33,5 +33,23 @@ namespace YummyProject.Controllers
             var values = db.Categories.ToList();
             return PartialView(values);
         }
+
+        public PartialViewResult DefaultWhyUs()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult DefaultTestimonial()
+        {
+            var values = db.Testimonials.ToList();
+            return PartialView(values);
+        }
+
+        public PartialViewResult DefaultEvent()
+        {
+            var values = db.Events.ToList();
+            return PartialView(values);
+        }
+
     }
 }
