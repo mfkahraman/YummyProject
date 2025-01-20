@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,29 +26,139 @@ namespace YummyProject.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddFeature(Feature model)
+        public ActionResult AddFeature(Feature model, HttpPostedFileBase imageFile)
         {
-            if(!ModelState.IsValid)
+            if (imageFile != null && imageFile.ContentLength > 0)
             {
-                return View(model);
+                var imagePath = SaveImage(imageFile, "features/");
+                if (imagePath == null)
+                {
+                    ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
+                    return View(model);
+                }
+                model.ImageUrl = imagePath;
             }
 
-            db.Features.Add(model);
-            var dbresult = db.SaveChanges();
-            if(dbresult == 0)
+            if (ModelState.IsValid)
             {
-                ViewBag.error = "Dbye kayıt edilirken sorun oluştu";
-                return View(model);
+                db.Features.Add(model);
+                var dbresult = db.SaveChanges();
+                if (dbresult == 0)
+                {
+                    ModelState.AddModelError("", "Veritabanına kayıt sırasında bir sorun oluştu.");
+                    return View(model);
+                }
+                return RedirectToAction("Index");
             }
+
+            return View(model);
+        }
+
+        public ActionResult UpdateFeature(int id)
+        {
+            var value = db.Features.Find(id);
+            return View(value);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateFeature(Feature model, HttpPostedFileBase imageFile)
+        {
+            var itemToUpdate = db.Features.Find(model.FeatureId);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate.ImageUrl = model.ImageUrl;
+                itemToUpdate.Title = model.Title;
+                itemToUpdate.Description = model.Description;
+                itemToUpdate.VideoUrl = model.VideoUrl;
+
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    DeleteOldImage(itemToUpdate.ImageUrl);
+
+                    var imagePath = SaveImage(imageFile, "features/");
+                    if (imagePath != null)
+                    {
+                        itemToUpdate.ImageUrl = imagePath;
+                    }
+                }
+
+                db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteFeature(int id)
         {
             var itemToDelete = db.Features.Find(id);
-            db.Features.Remove(itemToDelete);
-            db.SaveChanges();
+            if (itemToDelete != null)
+            {
+                try
+                {
+                    DeleteOldImage(itemToDelete.ImageUrl);
+                    db.Features.Remove(itemToDelete);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Silme işlemi sırasında bir hata oluştu.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Silinecek feature bulunamadı.";
+            }
+
             return RedirectToAction("Index");
         }
+
+
+
+        private string SaveImage(HttpPostedFileBase file, string folderPath)
+        {
+            string fileExtension = Path.GetExtension(file.FileName).ToLower();
+            if (fileExtension != ".jpg" && fileExtension != ".jpeg" && fileExtension != ".png" && fileExtension != ".gif")
+            {
+                return null;
+            }
+
+            string fileName = Guid.NewGuid() + fileExtension;
+            string rootPath = "/wwwroot/images/";
+            string fullPath = rootPath + folderPath;
+            string serverFolderPath = Server.MapPath(fullPath);
+            if (!Directory.Exists(serverFolderPath))
+            {
+                Directory.CreateDirectory(serverFolderPath);
+            }
+            string path = Path.Combine(serverFolderPath, fileName);
+            file.SaveAs(path);
+
+            return folderPath + fileName;
+        }
+
+        private bool DeleteOldImage(string imageUrl)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(imageUrl))
+                {
+                    var oldImagePath = Server.MapPath(imageUrl);
+                    if (System.IO.File.Exists(oldImagePath))
+                    {
+                        System.IO.File.Delete(oldImagePath);
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+            }
+            return false;
+        }
+
+
+
+
     }
 }

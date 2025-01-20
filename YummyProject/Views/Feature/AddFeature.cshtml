@@ -1,29 +1,48 @@
 ﻿@model YummyProject.Models.Feature
 @{
-    ViewBag.Title = "AddFeature";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Yeni Öne Çıkan Alan Ekle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Yeni Öne Çıkan Alan Ekleme Sayfası</h2>
+<br />
+<h2>@ViewBag.Title</h2>
 
-<form method="post">
-    <label>Resim Url</label>
-    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.ImageUrl, "", new { @class = "text-danger" })
-    <br />
-    <label>Başlık</label>
-    @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
-    <br />
-    <label>Açıklama</label>
-    @Html.TextAreaFor(x => x.Description, 1, 4, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
-    <br />
-    <label>Video Url</label>
-    @Html.TextBoxFor(x => x.VideoUrl, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.VideoUrl, "", new { @class = "text-danger" })
-    <br />
-    <div classs="text-danger">ViewBag.error</div>
-    <button class="btn btn-primary">Kaydet</button>
-</form>
+@using (Html.BeginForm("AddFeature", "Feature", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+        <br />
+        <strong><label>Başlık</label></strong>
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", placeholder = "Başlığı buraya girin" })
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    </div>
 
+    <br />
+    <div class="form-group">
+        <strong><label>Açıklama</label></strong>
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 5, placeholder = "Açıklamayı buraya girin" })
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+    <div class="form-group">
+        <strong><label>Video Url</label></strong>
+        @Html.TextBoxFor(model => model.VideoUrl, new { @class = "form-control", placeholder = "Buraya videonun url adresini giriniz." })
+        @Html.ValidationMessageFor(model => model.VideoUrl, "", new { @class = "text-danger" })
+    </div>
+
+    <br />
+    <div class="form-group">
+        <strong><label>Görsel Yükleyin</label></strong>
+        <input type="file" name="file" class="form-control" accept=".jpg,.jpeg,.png,.gif" />
+        <small class="form-text text-muted">Sadece .jpg, .jpeg, .png, .gif dosyaları yükleyebilirsiniz.</small>
+    </div>
+
+    if (!string.IsNullOrEmpty(ViewBag.error))
+    {
+        <br />
+        <div class="text-danger">@ViewBag.error</div>
+    }
+
+    <br />
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+}

@@ -1,0 +1,72 @@
+﻿@model YummyProject.Models.Booking
+
+<section id="book-a-table" class="book-a-table section">
+
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Rezervasyon Yapın</h2>
+        <p><span>Masanızı</span> <span class="description-title">Hemen Ayırtabİlİrsİnİz<br></span></p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="col-lg-4 reservation-img" style="background-image: url(/Templates/yummy-red-1.0.0/assets/img/reservation.jpg);"></div>
+
+            <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
+                @using (Html.BeginForm("BookTable", "Default", FormMethod.Post, new { @class = "form-group" }))
+                {
+                    <div class="row gy-4">
+                        <div class="col-lg-4 col-md-6">
+                            @*<input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">*@
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Adınız", required = "required" })
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            @*<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">*@
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Eposta adresiniz", required = "required" })
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            @*<input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="">*@
+                            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", placeholder = "Telefon numaranız", required = "required" })
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            @*<input type="date" name="date" class="form-control" id="date" placeholder="Date" required="">*@
+                            @Html.TextBoxFor(x => x.BookingDate, new { @class = "form-control", type = "datetime-local", required = "required" })
+                        </div>
+                        @*<div class="col-lg-4 col-md-6">
+                    <input type="time" class="form-control" name="time" id="time" placeholder="Time" required="">
+                </div>*@
+                        <div class="col-lg-4 col-md-6">
+                            @*<input type="number" class="form-control" name="people" id="people" placeholder="# of people" required="">*@
+                            @Html.TextBoxFor(x => x.PersonCount, new { @class = "form-control", placeholder = "Gelecek kişi sayısı", required = "required" })
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        @*<textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>*@
+                        @Html.TextAreaFor(x => x.MessageContent, new { @class = "form-control", rows = 4, placeholder = "Belirtmek istediğiniz detaylar varsa" })
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-danger">Rezervasyon Yap</button>
+                    </div>
+
+                    <div>
+                        @if (ViewBag.Message != null)
+                        {
+                            <div class="alert-success">
+                                <p>@ViewBag.Message</p>
+                            </div>
+                        }
+                    </div>
+
+                }
+
+            </div><!-- End Reservation Form -->
+
+        </div>
+
+    </div>
+
+</section>

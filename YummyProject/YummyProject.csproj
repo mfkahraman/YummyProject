@@ -133,7 +133,6 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\UILayoutController.cs" />
     <Compile Include="Global.asax.cs">
@@ -158,6 +157,14 @@
     <Compile Include="Migrations\202501091336526_SocialMediasAdded.cs" />
     <Compile Include="Migrations\202501091336526_SocialMediasAdded.Designer.cs">
       <DependentUpon>202501091336526_SocialMediasAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501192125354_bookingUpdated.cs" />
+    <Compile Include="Migrations\202501192125354_bookingUpdated.Designer.cs">
+      <DependentUpon>202501192125354_bookingUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501192151562_bookingUpdated2.cs" />
+    <Compile Include="Migrations\202501192151562_bookingUpdated2.Designer.cs">
+      <DependentUpon>202501192151562_bookingUpdated2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
@@ -203,67 +210,6 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="wwwroot\images\events\1.jpg" />
-    <Content Include="wwwroot\images\events\2.jpg" />
-    <Content Include="wwwroot\images\events\3.jpg" />
-    <Content Include="wwwroot\images\events\4.jpg" />
-    <Content Include="wwwroot\images\products\doner.jpg" />
-    <Content Include="wwwroot\images\products\fajita.png" />
-    <Content Include="wwwroot\images\products\frans.png" />
-    <Content Include="wwwroot\images\products\risotto.jpg" />
-    <Content Include="wwwroot\images\products\tarator.jpg" />
-    <Content Include="wwwroot\images\products\tortilla.jpg" />
-    <Content Include="wwwroot\images\testimonials\1.jpg" />
-    <Content Include="wwwroot\images\testimonials\2.jpg" />
-    <Content Include="wwwroot\images\testimonials\3.jpg" />
-    <Content Include="wwwroot\images\testimonials\4.jpg" />
-    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
-    <Content Include="Scripts\jquery-3.7.0.js" />
-    <Content Include="Scripts\jquery-3.7.0.min.js" />
-    <Content Include="Scripts\jquery-3.7.0.slim.js" />
-    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Templates\login-form-02\login-form-02\css\bootstrap.min.css" />
-    <Content Include="Templates\login-form-02\login-form-02\css\owl.carousel.min.css" />
-    <Content Include="Templates\login-form-02\login-form-02\css\style.css" />
-    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\demo-files\demo.css" />
-    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\demo-files\demo.js" />
-    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\demo.html" />
-    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\fonts\icomoon.svg" />
-    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\Read Me.txt" />
-    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\style.css" />
-    <Content Include="Templates\login-form-02\login-form-02\images\bg_1.jpg" />
-    <Content Include="Templates\login-form-02\login-form-02\index.html" />
-    <Content Include="Templates\login-form-02\login-form-02\js\bootstrap.min.js" />
-    <Content Include="Templates\login-form-02\login-form-02\js\jquery-3.3.1.min.js" />
-    <Content Include="Templates\login-form-02\login-form-02\js\main.js" />
-    <Content Include="Templates\login-form-02\login-form-02\js\owl.carousel.min.js" />
-    <Content Include="Templates\login-form-02\login-form-02\js\popper.min.js" />
-    <Content Include="Templates\login-form-02\login-form-02\main.html" />
-    <Content Include="Templates\sb-admin\401.html" />
-    <Content Include="Templates\sb-admin\404.html" />
-    <Content Include="Templates\sb-admin\500.html" />
-    <Content Include="Templates\sb-admin\assets\demo\chart-area-demo.js" />
-    <Content Include="Templates\sb-admin\assets\demo\chart-bar-demo.js" />
-    <Content Include="Templates\sb-admin\assets\demo\chart-pie-demo.js" />
-    <Content Include="Templates\sb-admin\assets\demo\datatables-demo.js" />
-    <Content Include="Templates\sb-admin\assets\img\error-404-monochrome.svg" />
-    <Content Include="Templates\sb-admin\charts.html" />
-    <Content Include="Templates\sb-admin\css\styles.css" />
-    <Content Include="Templates\sb-admin\index.html" />
-    <Content Include="Templates\sb-admin\js\datatables-simple-demo.js" />
-    <Content Include="Templates\sb-admin\js\scripts.js" />
-    <Content Include="Templates\sb-admin\layout-sidenav-light.html" />
-    <Content Include="Templates\sb-admin\layout-static.html" />
-    <Content Include="Templates\sb-admin\login.html" />
-    <Content Include="Templates\sb-admin\password.html" />
-    <Content Include="Templates\sb-admin\register.html" />
-    <Content Include="Templates\sb-admin\tables.html" />
     <Content Include="Templates\yummy-red-1.0.0\assets\css\main.css" />
     <Content Include="Templates\yummy-red-1.0.0\assets\img\about-2.jpg" />
     <Content Include="Templates\yummy-red-1.0.0\assets\img\about.jpg" />
@@ -344,6 +290,78 @@
     <Content Include="Templates\yummy-red-1.0.0\index.html" />
     <Content Include="Templates\yummy-red-1.0.0\Readme.txt" />
     <Content Include="Templates\yummy-red-1.0.0\starter-page.html" />
+    <Content Include="wwwroot\images\chefs\1.jpg" />
+    <Content Include="wwwroot\images\chefs\2.jpg" />
+    <Content Include="wwwroot\images\chefs\3.jpg" />
+    <Content Include="wwwroot\images\events\1.jpg" />
+    <Content Include="wwwroot\images\events\2.jpg" />
+    <Content Include="wwwroot\images\events\3.jpg" />
+    <Content Include="wwwroot\images\events\4.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-1.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-2.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-3.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-4.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-5.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-6.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-7.jpg" />
+    <Content Include="wwwroot\images\gallery\gallery-8.jpg" />
+    <Content Include="wwwroot\images\products\doner.jpg" />
+    <Content Include="wwwroot\images\products\fajita.png" />
+    <Content Include="wwwroot\images\products\frans.png" />
+    <Content Include="wwwroot\images\products\risotto.jpg" />
+    <Content Include="wwwroot\images\products\tarator.jpg" />
+    <Content Include="wwwroot\images\products\tortilla.jpg" />
+    <Content Include="wwwroot\images\testimonials\1.jpg" />
+    <Content Include="wwwroot\images\testimonials\2.jpg" />
+    <Content Include="wwwroot\images\testimonials\3.jpg" />
+    <Content Include="wwwroot\images\testimonials\4.jpg" />
+    <None Include="Scripts\jquery-3.7.0.intellisense.js" />
+    <Content Include="Scripts\jquery-3.7.0.js" />
+    <Content Include="Scripts\jquery-3.7.0.min.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.js" />
+    <Content Include="Scripts\jquery-3.7.0.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Templates\login-form-02\login-form-02\css\bootstrap.min.css" />
+    <Content Include="Templates\login-form-02\login-form-02\css\owl.carousel.min.css" />
+    <Content Include="Templates\login-form-02\login-form-02\css\style.css" />
+    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\demo-files\demo.css" />
+    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\demo-files\demo.js" />
+    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\demo.html" />
+    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\fonts\icomoon.svg" />
+    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\Read Me.txt" />
+    <Content Include="Templates\login-form-02\login-form-02\fonts\icomoon\style.css" />
+    <Content Include="Templates\login-form-02\login-form-02\images\bg_1.jpg" />
+    <Content Include="Templates\login-form-02\login-form-02\index.html" />
+    <Content Include="Templates\login-form-02\login-form-02\js\bootstrap.min.js" />
+    <Content Include="Templates\login-form-02\login-form-02\js\jquery-3.3.1.min.js" />
+    <Content Include="Templates\login-form-02\login-form-02\js\main.js" />
+    <Content Include="Templates\login-form-02\login-form-02\js\owl.carousel.min.js" />
+    <Content Include="Templates\login-form-02\login-form-02\js\popper.min.js" />
+    <Content Include="Templates\login-form-02\login-form-02\main.html" />
+    <Content Include="Templates\sb-admin\401.html" />
+    <Content Include="Templates\sb-admin\404.html" />
+    <Content Include="Templates\sb-admin\500.html" />
+    <Content Include="Templates\sb-admin\assets\demo\chart-area-demo.js" />
+    <Content Include="Templates\sb-admin\assets\demo\chart-bar-demo.js" />
+    <Content Include="Templates\sb-admin\assets\demo\chart-pie-demo.js" />
+    <Content Include="Templates\sb-admin\assets\demo\datatables-demo.js" />
+    <Content Include="Templates\sb-admin\assets\img\error-404-monochrome.svg" />
+    <Content Include="Templates\sb-admin\charts.html" />
+    <Content Include="Templates\sb-admin\css\styles.css" />
+    <Content Include="Templates\sb-admin\index.html" />
+    <Content Include="Templates\sb-admin\js\datatables-simple-demo.js" />
+    <Content Include="Templates\sb-admin\js\scripts.js" />
+    <Content Include="Templates\sb-admin\layout-sidenav-light.html" />
+    <Content Include="Templates\sb-admin\layout-static.html" />
+    <Content Include="Templates\sb-admin\login.html" />
+    <Content Include="Templates\sb-admin\password.html" />
+    <Content Include="Templates\sb-admin\register.html" />
+    <Content Include="Templates\sb-admin\tables.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -355,41 +373,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\.DS_Store" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\img\.DS_Store" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\.DS_Store" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\aos\aos.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\bootstrap-icons.json" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\bootstrap-icons.scss" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff2" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.rtl.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.esm.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\purecounter\purecounter_vanilla.js.map" />
-    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\swiper\swiper-bundle.min.js.map" />
     <Content Include="Views\UILayout\Index.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\DefaultFeature.cshtml" />
@@ -504,9 +487,48 @@
     <Content Include="Views\Default\DefaultWhyUs.cshtml" />
     <Content Include="Views\Default\DefaultTestimonial.cshtml" />
     <Content Include="Views\Default\DefaultEvent.cshtml" />
+    <Content Include="Views\Default\DefaultChef.cshtml" />
+    <Content Include="Views\Default\DefaultBooking.cshtml" />
+    <Content Include="Views\Default\DefaultContact.cshtml" />
+    <Content Include="Views\Default\DefaultGallery.cshtml" />
+    <Content Include="Views\Default\DefaultMessage.cshtml" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\.DS_Store" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\img\.DS_Store" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\.DS_Store" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\aos\aos.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\bootstrap-icons.json" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\bootstrap-icons.scss" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap-icons\fonts\bootstrap-icons.woff2" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.rtl.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.esm.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\purecounter\purecounter_vanilla.js.map" />
+    <Content Include="Templates\yummy-red-1.0.0\assets\vendor\swiper\swiper-bundle.min.js.map" />
+    <Content Include="Views\Feature\UpdateFeature.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="wwwroot\images\features\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -550,6 +572,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501091336526_SocialMediasAdded.resx">
       <DependentUpon>202501091336526_SocialMediasAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501192125354_bookingUpdated.resx">
+      <DependentUpon>202501192125354_bookingUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501192151562_bookingUpdated2.resx">
+      <DependentUpon>202501192151562_bookingUpdated2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,41 +1,83 @@
 ﻿@model List<YummyProject.Models.Feature>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Öne Çıkan Alan Listesi";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Öne Çıkan Alan</h2>
-
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>ImageUrl</th>
-            <th>VideoUrl</th>
-            <th>Sil</th>
-            <th>Güncelle</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <th>@item.FeatureId</th>
-                <td>@item.Title</td>
-                <td>@item.Description</td>
-                <td><img src="@item.ImageUrl" style="width:50px;height:50px" /></td>
-                <td>@item.VideoUrl</td>
-                <td><a href="/Feature/DeleteFeature/@item.FeatureId" class="btn btn-danger">Sil</a></td>
-                <td><a href="#" class="btn btn-info">Güncelle</a></td>
-            </tr>
-        }
-    </tbody>
-
-</table>
+<br>
+<h2>@ViewBag.Title</h2>
 <br />
-<a href="/Feature/AddFeature" class="btn btn-primary">Yeni Öne Çıkan Ekle</a>
+
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="width: 20%;">BAŞLIK</th>
+                <th style="width: 40%;">AÇIKLAMA</th>
+                <th style="width: 10%;">GÖRSEL</th>
+                <th style="width: 20%;">VİDEO URL</th>
+                <th style="width: 10%;">İŞLEMLER</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+
+                    <td>
+                        @if (item.Description.Length > 150)
+                        {
+                            @item.Description.Substring(0, 150)
+                        }
+
+                        else
+                        {
+                            @item.Description
+                        }
+                    </td>
+
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="@item.ImageUrl" alt="Görsel Yüklenemedi" style="width: 100px; height: 100px;" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">Görsel Yok</span>
+                        }
+                    </td>
+
+                    <td>
+                        @item.VideoUrl
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action("UpdateFeature", new { id = item.FeatureId })" class="btn btn-primary btn-sm">
+                            <i class="fas fa-edit"></i> Güncelle
+                        </a>
+                        <a href="@Url.Action("DeleteFeature", new { id = item.FeatureId })" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                            <i class="fas fa-trash"></i> Sil
+                        </a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<a href="/Feature/AddFeature/" class="btn btn-primary mt-3">Yeni Öne Çıkan Ekle</a>
 

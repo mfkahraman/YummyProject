@@ -1,0 +1,45 @@
+﻿@model YummyProject.Models.Message
+
+@*<form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600">*@
+@using (Html.BeginForm("SendMessage", "Default", FormMethod.Post, new { @class = "form-group" }))
+{
+    <div class="row gy-4">
+
+        <div class="col-md-6">
+            @*<input type="text" name="name" class="form-control" placeholder="Your Name" required="">*@
+            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Adınız", required = "required" })
+        </div>
+
+        <div class="col-md-6 ">
+            @*<input type="email" class="form-control" name="email" placeholder="Your Email" required="">*@
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", placeholder = "Eposta adresiniz", required = "required" })
+        </div>
+
+        <div class="col-md-12">
+            @*<input type="text" class="form-control" name="subject" placeholder="Subject" required="">*@
+            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", placeholder = "Konu", required = "required" })
+        </div>
+
+        <div class="col-md-12">
+            @*<textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>*@
+            @Html.TextAreaFor(x => x.MessageContent, new { @class = "form-control", rows = 4, placeholder = "Mesajınızı buraya yazabilirsiniz" })
+        </div>
+
+        <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-danger">Mesaj Gönder</button>
+        </div>
+
+        <div>
+        @if (ViewBag.Message != null)
+        {
+            <div class="alert-success">
+                <p>@ViewBag.Message</p>
+            </div>
+        }
+        </div>
+
+    </div>
+}
+@*</form>*@
+
+<!-- End Message Form -->
