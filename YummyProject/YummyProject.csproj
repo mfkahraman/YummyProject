@@ -129,11 +129,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\YummyContext.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminLayoutController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UILayoutController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -165,6 +169,14 @@
     <Compile Include="Migrations\202501192151562_bookingUpdated2.cs" />
     <Compile Include="Migrations\202501192151562_bookingUpdated2.Designer.cs">
       <DependentUpon>202501192151562_bookingUpdated2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501220752541_featureImgValRem.cs" />
+    <Compile Include="Migrations\202501220752541_featureImgValRem.Designer.cs">
+      <DependentUpon>202501220752541_featureImgValRem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501221138585_aboutValRulesAdded.cs" />
+    <Compile Include="Migrations\202501221138585_aboutValRulesAdded.Designer.cs">
+      <DependentUpon>202501221138585_aboutValRulesAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
@@ -525,6 +537,16 @@
     <Content Include="Templates\yummy-red-1.0.0\assets\vendor\purecounter\purecounter_vanilla.js.map" />
     <Content Include="Templates\yummy-red-1.0.0\assets\vendor\swiper\swiper-bundle.min.js.map" />
     <Content Include="Views\Feature\UpdateFeature.cshtml" />
+    <Content Include="Views\About\Index.cshtml" />
+    <Content Include="Views\About\AddAbout.cshtml" />
+    <Content Include="Views\About\UpdateAbout.cshtml" />
+    <Content Include="Views\Booking\PendingReservations.cshtml" />
+    <Content Include="Views\Booking\ApprovedReservations.cshtml" />
+    <Content Include="Views\Message\UnreadMessages.cshtml" />
+    <Content Include="Views\Message\ReadMessages.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\AddProduct.cshtml" />
+    <Content Include="Views\Product\UpdateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -578,6 +600,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501192151562_bookingUpdated2.resx">
       <DependentUpon>202501192151562_bookingUpdated2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501220752541_featureImgValRem.resx">
+      <DependentUpon>202501220752541_featureImgValRem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501221138585_aboutValRulesAdded.resx">
+      <DependentUpon>202501221138585_aboutValRulesAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,91 @@
+﻿@model List<YummyProject.Models.Message>
+
+@{
+    ViewBag.Title = "Okunmuş Mesajlar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <br />
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <br />
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+<br>
+<h2>@ViewBag.Title</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="width: 15%;">TALEP SAHİBİ</th>
+                <th style="width: 20%;">EMAIL</th>
+                <th style="width: 20%;">KONU</th>
+                <th style="width: 45%;">MESAJ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Subject</td>
+
+                    @*Mesaj*@
+                    <td>
+                        @if (item.MessageContent.Length > 70)
+                        {
+                            <span>@item.MessageContent.Substring(0, 70)...</span>
+                            <a href="#" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#commentModal"
+                               data-context="@item.MessageContent">Detay</a>
+                        }
+                        else
+                        {
+                            <span>@item.MessageContent</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">Tam Açıklama</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalCommentContent" style="white-space: pre-wrap; word-wrap: break-word;">
+                <!-- Full comment will be dynamically inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var commentModal = new bootstrap.Modal(document.getElementById('commentModal'));
+
+            document.querySelectorAll('a[data-bs-toggle="modal"]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var comment = button.getAttribute('data-context');
+                    document.getElementById('modalCommentContent').textContent = comment;
+                });
+            });
+        });
+    </script>
+}

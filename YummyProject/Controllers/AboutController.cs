@@ -10,27 +10,28 @@ using YummyProject.Models;
 namespace YummyProject.Controllers
 {
     [Authorize]
-    public class FeatureController : Controller
+    public class AboutController : Controller
     {
         private readonly YummyContext db = new YummyContext();
         public ActionResult Index()
         {
-            var values = db.Features.ToList();
+            var values = db.Abouts.ToList();
             return View(values);
         }
 
         [HttpGet]
-        public ActionResult AddFeature()
+        public ActionResult AddAbout()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddFeature(Feature model, HttpPostedFileBase imageFile)
+        public ActionResult AddAbout(About model, HttpPostedFileBase imageFile, HttpPostedFileBase imageFile2)
         {
+            //ImageUrl için
             if (imageFile != null && imageFile.ContentLength > 0)
             {
-                var imagePath = SaveImage(imageFile, "features/");
+                var imagePath = SaveImage(imageFile, "abouts/");
                 if (imagePath == null)
                 {
                     ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -40,11 +41,24 @@ namespace YummyProject.Controllers
                 model.ImageUrl = imagePath;
             }
 
+            //ImageUrl2 için
+            if (imageFile2 != null && imageFile2.ContentLength > 0)
+            {
+                var imagePath2 = SaveImage(imageFile2, "abouts/");
+                if (imagePath2 == null)
+                {
+                    ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
+                    ViewBag.Error = "Görsel yüklenemedi. Lütfen geçerli bir dosya formatı seçin.";
+                    return View(model);
+                }
+                model.ImageUrl2 = imagePath2;
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    db.Features.Add(model);
+                    db.Abouts.Add(model);
                     int dbresult = db.SaveChanges();
 
                     if (dbresult > 0)
@@ -70,16 +84,16 @@ namespace YummyProject.Controllers
         }
 
 
-        public ActionResult UpdateFeature(int id)
+        public ActionResult UpdateAbout(int id)
         {
-            var value = db.Features.Find(id);
+            var value = db.Abouts.Find(id);
             return View(value);
         }
 
         [HttpPost]
-        public ActionResult UpdateFeature(Feature model, HttpPostedFileBase imageFile)
+        public ActionResult UpdateAbout(About model, HttpPostedFileBase imageFile, HttpPostedFileBase imageFile2)
         {
-            var itemToUpdate = db.Features.Find(model.FeatureId);
+            var itemToUpdate = db.Abouts.Find(model.AboutId);
 
             if (itemToUpdate == null)
             {
@@ -88,7 +102,10 @@ namespace YummyProject.Controllers
                 return View(model);
             }
 
-            itemToUpdate.Title = model.Title;
+            itemToUpdate.Item1 = model.Item1;
+            itemToUpdate.Item2 = model.Item2;
+            itemToUpdate.Item3 = model.Item3;
+            itemToUpdate.PhoneNumber = model.PhoneNumber;
             itemToUpdate.Description = model.Description;
             itemToUpdate.VideoUrl = model.VideoUrl;
 
@@ -96,7 +113,7 @@ namespace YummyProject.Controllers
             {
                 DeleteOldImage(itemToUpdate.ImageUrl);
 
-                var imagePath = SaveImage(imageFile, "features/");
+                var imagePath = SaveImage(imageFile, "abouts/");
                 if (imagePath == null)
                 {
                     ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -105,6 +122,21 @@ namespace YummyProject.Controllers
                 }
 
                 itemToUpdate.ImageUrl = imagePath;
+            }
+
+            if (imageFile2 != null && imageFile2.ContentLength > 0)
+            {
+                DeleteOldImage(itemToUpdate.ImageUrl2);
+
+                var imagePath2 = SaveImage(imageFile2, "abouts/");
+                if (imagePath2 == null)
+                {
+                    ModelState.AddModelError("ImageUrl2", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
+                    ViewBag.Error = "Görsel yüklenemedi. Lütfen geçerli bir dosya formatı seçin.";
+                    return View(model);
+                }
+
+                itemToUpdate.ImageUrl2 = imagePath2;
             }
 
             if (ModelState.IsValid)
@@ -128,15 +160,16 @@ namespace YummyProject.Controllers
             return View(model);
         }
 
-        public ActionResult DeleteFeature(int id)
+        public ActionResult DeleteAbout(int id)
         {
-            var itemToDelete = db.Features.Find(id);
+            var itemToDelete = db.Abouts.Find(id);
             if (itemToDelete != null)
             {
                 try
                 {
                     DeleteOldImage(itemToDelete.ImageUrl);
-                    db.Features.Remove(itemToDelete);
+                    DeleteOldImage(itemToDelete.ImageUrl2);
+                    db.Abouts.Remove(itemToDelete);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
@@ -147,10 +180,10 @@ namespace YummyProject.Controllers
             }
             else
             {
-                TempData["ErrorMessage"] = "Silinecek feature bulunamadı.";
+                TempData["ErrorMessage"] = "Silinecek entity bulunamadı.";
             }
 
-            TempData["SuccessMessage"] = "Feature silindi.";
+            TempData["SuccessMessage"] = "Entity silindi.";
             return RedirectToAction("Index");
         }
 

@@ -9,7 +9,6 @@ namespace YummyProject.Models
     public class Feature
     {
         public int FeatureId { get; set; }
-        [Required(ErrorMessage = "Resim Url Boş Bırakılamaz")]
         public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "Başlık Boş Bırakılamaz")]

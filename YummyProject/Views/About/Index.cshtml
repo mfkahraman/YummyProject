@@ -1,7 +1,7 @@
-﻿@model List<YummyProject.Models.Feature>
+﻿@model List<YummyProject.Models.About>
 
 @{
-    ViewBag.Title = "Öne Çıkan Alan Listesi";
+    ViewBag.Title = "Hakkımızda";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
@@ -12,10 +12,14 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th style="width: 20%;">BAŞLIK</th>
-                <th style="width: 40%;">AÇIKLAMA</th>
-                <th style="width: 10%;">GÖRSEL</th>
-                <th style="width: 20%;">VİDEO URL</th>
+                <th style="width: 8%;">1. MADDE</th>
+                <th style="width: 8%;">2. MADDE</th>
+                <th style="width: 8%;">3. MADDE</th>
+                <th style="width: 6%;">TELEFON</th>
+                <th style="width: 30%;">AÇIKLAMA</th>
+                <th style="width: 10%;">VİDEO URL</th>
+                <th style="width: 10%;">1. GÖRSEL</th>
+                <th style="width: 10%;">2. GÖRSEL</th>
                 <th style="width: 10%;">İŞLEMLER</th>
             </tr>
         </thead>
@@ -23,8 +27,12 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Title</td>
+                    <td>@item.Item1</td>
+                    <td>@item.Item2</td>
+                    <td>@item.Item3</td>
+                    <td>@item.PhoneNumber</td>
 
+                    @*Açıklama*@
                     <td>
                         @if (item.Description.Length > 150)
                         {
@@ -37,6 +45,9 @@
                         }
                     </td>
 
+                    <td>@item.VideoUrl</td>
+
+                    @*GÖrsel*@
                     <td>
                         @if (!string.IsNullOrEmpty(item.ImageUrl))
                         {
@@ -48,13 +59,23 @@
                         }
                     </td>
 
-                    <td>@item.VideoUrl</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImageUrl2))
+                        {
+                            <img src="@item.ImageUrl2" alt="Görsel Yüklenemedi" style="width: 100px; height: 100px;" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">Görsel Yok</span>
+                        }
+                    </td>
 
                     <td>
-                        <a href="@Url.Action("UpdateFeature", new { id = item.FeatureId })" class="btn btn-primary btn-sm">
+                        <a href="@Url.Action("UpdateAbout", new { id = item.AboutId })" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i> Güncelle
                         </a>
-                        <a href="@Url.Action("DeleteFeature", new { id = item.FeatureId })" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                        <br />
+                        <a href="@Url.Action("DeleteAbout", new { id = item.AboutId })" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?')">
                             <i class="fas fa-trash"></i> Sil
                         </a>
 
@@ -74,5 +95,5 @@
     <div class="alert alert-success">@TempData["SuccessMessage"]</div>
 }
 
-<a href="/Feature/AddFeature/" class="btn btn-primary mt-3">Yeni Öne Çıkan Ekle</a>
+<a href="/About/AddAbout/" class="btn btn-primary mt-3">Yeni Hakkımızda Ekle</a>
 

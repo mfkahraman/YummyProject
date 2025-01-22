@@ -1,0 +1,119 @@
+﻿@model YummyProject.Models.About
+
+@{
+    ViewBag.Title = "Hakkımızda Güncelle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+</style>
+
+<br />
+<h2 class="mb-4">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("UpdateAbout", "About", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="form-group">
+        <label for="AboutId">Hakkımızda ID</label>
+        @Html.TextBoxFor(x => x.AboutId, new { @class = "form-control", @readonly = "readonly", @id = "FeatureId" })
+    </div>
+
+    <div class="form-group">
+        <label for="Item1">1. Madde</label>
+        @Html.TextBoxFor(x => x.Item1, new { @class = "form-control", @id = "Item1" })
+        @Html.ValidationMessageFor(x => x.Item1, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Item2">2. Madde</label>
+        @Html.TextBoxFor(x => x.Item2, new { @class = "form-control", @id = "Item2" })
+        @Html.ValidationMessageFor(x => x.Item2, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Item3">3. Madde</label>
+        @Html.TextBoxFor(x => x.Item3, new { @class = "form-control", @id = "Item3" })
+        @Html.ValidationMessageFor(x => x.Item3, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="PhoneNumber">Telefon</label>
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @id = "Item3" })
+        @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Description">Açıklama</label>
+        @Html.TextAreaFor(x => x.Description, 5, 30, new { @class = "form-control", @id = "Description" })
+        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="VideoUrl">Video URL</label>
+        @Html.TextBoxFor(x => x.VideoUrl, new { @class = "form-control", @id = "VideoUrl" })
+        @Html.ValidationMessageFor(x => x.VideoUrl, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-group">
+        <label>Mevcut Görsel1</label>
+        <div>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="@Url.Content(Model.ImageUrl)" class="img-thumbnail mt-2" style="max-width: 150px;" alt="Mevcut Görsel" />
+            }
+            else
+            {
+                <p>Mevcut görsel bulunmamaktadır.</p>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="imageFile">Yeni Görsel1 Seç</label>
+        <input type="file" name="imageFile" class="form-control" accept=".jpg,.jpeg,.png,.gif" id="imageFile" />
+        @Html.ValidationMessage("ImageUrl", "", new { @class = "text-danger" })
+        <small class="form-text text-muted">Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.</small>
+    </div>
+
+    <div class="form-group">
+        <label>Mevcut Görsel2</label>
+        <div>
+            @if (!string.IsNullOrEmpty(Model.ImageUrl2))
+            {
+                <img src="@Url.Content(Model.ImageUrl2)" class="img-thumbnail mt-2" style="max-width: 150px;" alt="Mevcut Görsel2" />
+            }
+            else
+            {
+                <p>Mevcut görsel bulunmamaktadır.</p>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="imageFile2">Yeni Görsel2 Seç</label>
+        <input type="file" name="imageFile2" class="form-control" accept=".jpg,.jpeg,.png,.gif" id="imageFile2" />
+        @Html.ValidationMessage("ImageUrl2", "", new { @class = "text-danger" })
+        <small class="form-text text-muted">Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.</small>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+        <a href="@Url.Action("Index", "About")" class="btn btn-secondary">İptal</a>
+    </div>
+}

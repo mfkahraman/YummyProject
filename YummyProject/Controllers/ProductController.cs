@@ -9,28 +9,29 @@ using YummyProject.Models;
 
 namespace YummyProject.Controllers
 {
-    [Authorize]
-    public class FeatureController : Controller
+    public class ProductController : Controller
     {
         private readonly YummyContext db = new YummyContext();
+        // GET: Product
         public ActionResult Index()
         {
-            var values = db.Features.ToList();
+            var values = db.Products.ToList();
             return View(values);
         }
 
         [HttpGet]
-        public ActionResult AddFeature()
+        public ActionResult AddProduct()
         {
+            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddFeature(Feature model, HttpPostedFileBase imageFile)
+        public ActionResult AddProduct(Product model, HttpPostedFileBase imageFile)
         {
             if (imageFile != null && imageFile.ContentLength > 0)
             {
-                var imagePath = SaveImage(imageFile, "features/");
+                var imagePath = SaveImage(imageFile, "products/");
                 if (imagePath == null)
                 {
                     ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -44,8 +45,9 @@ namespace YummyProject.Controllers
             {
                 try
                 {
-                    db.Features.Add(model);
+                    db.Products.Add(model);
                     int dbresult = db.SaveChanges();
+                    TempData["SuccessMessage"] = "Kayıt eklendi.";
 
                     if (dbresult > 0)
                     {
@@ -70,16 +72,17 @@ namespace YummyProject.Controllers
         }
 
 
-        public ActionResult UpdateFeature(int id)
+        public ActionResult UpdateProduct(int id)
         {
-            var value = db.Features.Find(id);
+            var value = db.Products.Find(id);
+            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName", value.CategoryId);
             return View(value);
         }
 
         [HttpPost]
-        public ActionResult UpdateFeature(Feature model, HttpPostedFileBase imageFile)
+        public ActionResult UpdateProduct(Product model, HttpPostedFileBase imageFile)
         {
-            var itemToUpdate = db.Features.Find(model.FeatureId);
+            var itemToUpdate = db.Products.Find(model.ProductId);
 
             if (itemToUpdate == null)
             {
@@ -88,15 +91,16 @@ namespace YummyProject.Controllers
                 return View(model);
             }
 
-            itemToUpdate.Title = model.Title;
-            itemToUpdate.Description = model.Description;
-            itemToUpdate.VideoUrl = model.VideoUrl;
+            itemToUpdate.ProductName = model.ProductName;
+            itemToUpdate.Ingrdients = model.Ingrdients;
+            itemToUpdate.Price = model.Price;
+            itemToUpdate.CategoryId = model.CategoryId;
 
             if (imageFile != null && imageFile.ContentLength > 0)
             {
                 DeleteOldImage(itemToUpdate.ImageUrl);
 
-                var imagePath = SaveImage(imageFile, "features/");
+                var imagePath = SaveImage(imageFile, "products/");
                 if (imagePath == null)
                 {
                     ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -112,6 +116,7 @@ namespace YummyProject.Controllers
                 try
                 {
                     db.SaveChanges();
+                    TempData["SuccessMessage"] = "Kayıt güncellendi.";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
@@ -128,15 +133,15 @@ namespace YummyProject.Controllers
             return View(model);
         }
 
-        public ActionResult DeleteFeature(int id)
+        public ActionResult DeleteProduct(int id)
         {
-            var itemToDelete = db.Features.Find(id);
+            var itemToDelete = db.Products.Find(id);
             if (itemToDelete != null)
             {
                 try
                 {
                     DeleteOldImage(itemToDelete.ImageUrl);
-                    db.Features.Remove(itemToDelete);
+                    db.Products.Remove(itemToDelete);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
@@ -150,7 +155,7 @@ namespace YummyProject.Controllers
                 TempData["ErrorMessage"] = "Silinecek feature bulunamadı.";
             }
 
-            TempData["SuccessMessage"] = "Feature silindi.";
+            TempData["SuccessMessage"] = "Kayıt silindi.";
             return RedirectToAction("Index");
         }
 
@@ -197,9 +202,6 @@ namespace YummyProject.Controllers
             }
             return false;
         }
-
-
-
 
     }
 }

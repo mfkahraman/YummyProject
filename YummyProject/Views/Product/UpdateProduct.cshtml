@@ -1,7 +1,7 @@
-﻿@model YummyProject.Models.Feature
+﻿@model YummyProject.Models.Product
 
 @{
-    ViewBag.Title = "Öne Çıkan Alan Güncelle";
+    ViewBag.Title = "Ürün Güncelle";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
@@ -18,7 +18,7 @@
 <br />
 <h2 class="mb-4">@ViewBag.Title</h2>
 
-@using (Html.BeginForm("UpdateFeature", "Feature", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UpdateProduct", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
     if (!string.IsNullOrEmpty(ViewBag.Error))
@@ -29,26 +29,32 @@
     }
 
     <div class="form-group">
-        <label for="FeatureId">Öne Çıkan ID</label>
-        @Html.TextBoxFor(x => x.FeatureId, new { @class = "form-control", @readonly = "readonly", @id = "FeatureId" })
+        <label for="ProductId">ID</label>
+        @Html.TextBoxFor(x => x.ProductId, new { @class = "form-control", @readonly = "readonly", @id = "ProductId" })
     </div>
 
     <div class="form-group">
-        <label for="Title">Başlık</label>
-        @Html.TextBoxFor(x => x.Title, new { @class = "form-control", @id = "Title" })
-        @Html.ValidationMessageFor(x => x.Title, "", new { @class = "text-danger" })
+        <label for="ProductName">Ürün Adı</label>
+        @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control", @id = "ProductName" })
+        @Html.ValidationMessageFor(x => x.ProductName, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        <label for="Description">Açıklama</label>
-        @Html.TextAreaFor(x => x.Description, 5, 30, new { @class = "form-control", @id = "Description" })
-        @Html.ValidationMessageFor(x => x.Description, "", new { @class = "text-danger" })
+        <label for="Ingrdients">İçerikler</label>
+        @Html.TextAreaFor(x => x.Ingrdients, 2, 30, new { @class = "form-control", @id = "Ingrdients" })
+        @Html.ValidationMessageFor(x => x.Ingrdients, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        <label for="VideoUrl">Video URL</label>
-        @Html.TextBoxFor(x => x.VideoUrl, new { @class = "form-control", @id = "VideoUrl" })
-        @Html.ValidationMessageFor(x => x.VideoUrl, "", new { @class = "text-danger" })
+        <label for="Price">Fiyat</label>
+        @Html.TextBoxFor(x => x.Price, new { @class = "form-control", @id = "Price" })
+        @Html.ValidationMessageFor(x => x.Price, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="CategoryId">Kategori</label>
+        @Html.DropDownListFor(x => x.CategoryId, (SelectList)ViewBag.Categories, new { @class = "form-control", @id = "CategoryId" })
+        @Html.ValidationMessageFor(x => x.CategoryId, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
@@ -74,6 +80,6 @@
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Güncelle</button>
-        <a href="@Url.Action("Index", "Feature")" class="btn btn-secondary">İptal</a>
+        <a href="@Url.Action("Index", "Product")" class="btn btn-secondary">İptal</a>
     </div>
 }
