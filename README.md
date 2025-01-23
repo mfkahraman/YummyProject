@@ -19,23 +19,15 @@ Modular Design: Clean and maintainable with PartialView.
 Modal Integration: Detailed views for reservations and messages.
 
 🛠️ Technologies Used:
-💻 .NET MVC
-
-🎨 HTML, CSS, Bootstrap
-
-⚙️ JavaScript, jQuery
-
-🗃️ Entity Framework (Code First)
-
-📄 PagedList NuGet (Paging)
-
-🪟 Modal Structure (Detailed Views)
-
-🧩 PartialView, PartialClass
-
-🔒 Authorization, Session
-
-🔑 Login, Logout
+.NET MVC
+HTML, CSS, Bootstrap
+JavaScript, jQuery
+Entity Framework (Code First)
+PagedList NuGet (Paging)
+Modal Structure (Detailed Views)
+PartialView, PartialClass
+Authorization, Session
+Login, Logout
 
 
 ![AboutUs](https://github.com/user-attachments/assets/0af5d8b4-54a9-481a-b22f-b4b83d6028fa)
