@@ -1,0 +1,46 @@
+﻿@model YummyProject.Models.Category
+
+@{
+    ViewBag.Title = "Kategori Güncelle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* Inputlar arasında boşluk bırakmak için */
+    }
+</style>
+
+<br />
+<h2 class="mb-4">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="form-group">
+        <label for="CategoryId">ID</label>
+        @Html.TextBoxFor(x => x.CategoryId, new { @class = "form-control", @readonly = "readonly", @id = "CategorytId" })
+    </div>
+
+    <div class="form-group">
+        <label for="CategoryName">Kategori Adı</label>
+        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", @id = "CategoryName" })
+        @Html.ValidationMessageFor(x => x.CategoryName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+        <a href="@Url.Action("Index", "Category")" class="btn btn-secondary">İptal</a>
+    </div>
+}

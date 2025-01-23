@@ -54,6 +54,12 @@
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -132,8 +138,13 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminLayoutController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ChefController.cs" />
+    <Compile Include="Controllers\ChefSocialController.cs" />
+    <Compile Include="Controllers\ContactInfoController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\FeatureController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -178,6 +189,18 @@
     <Compile Include="Migrations\202501221138585_aboutValRulesAdded.Designer.cs">
       <DependentUpon>202501221138585_aboutValRulesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202501230842212_valRules.cs" />
+    <Compile Include="Migrations\202501230842212_valRules.Designer.cs">
+      <DependentUpon>202501230842212_valRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501231001424_valRules2.cs" />
+    <Compile Include="Migrations\202501231001424_valRules2.Designer.cs">
+      <DependentUpon>202501231001424_valRules2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202501231149308_valRules3.cs" />
+    <Compile Include="Migrations\202501231149308_valRules3.Designer.cs">
+      <DependentUpon>202501231149308_valRules3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\About.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -213,6 +236,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -547,9 +571,25 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\AddProduct.cshtml" />
     <Content Include="Views\Product\UpdateProduct.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Category\UpdateCategory.cshtml" />
+    <Content Include="Views\Chef\Index.cshtml" />
+    <Content Include="Views\Chef\AddChef.cshtml" />
+    <Content Include="Views\Chef\UpdateChef.cshtml" />
+    <Content Include="Views\ChefSocial\Index.cshtml" />
+    <Content Include="Views\ChefSocial\AddChefSocial.cshtml" />
+    <Content Include="Views\ChefSocial\UpdateChefSocial.cshtml" />
+    <Content Include="Views\ContactInfo\Index.cshtml" />
+    <Content Include="Views\ContactInfo\AddContactInfo.cshtml" />
+    <Content Include="Views\ContactInfo\UpdateContactInfo.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\AddEvent.cshtml" />
+    <Content Include="Views\Event\UpdateEvent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Contact\" />
     <Folder Include="wwwroot\images\features\" />
   </ItemGroup>
   <ItemGroup>
@@ -606,6 +646,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202501221138585_aboutValRulesAdded.resx">
       <DependentUpon>202501221138585_aboutValRulesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501230842212_valRules.resx">
+      <DependentUpon>202501230842212_valRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501231001424_valRules2.resx">
+      <DependentUpon>202501231001424_valRules2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202501231149308_valRules3.resx">
+      <DependentUpon>202501231149308_valRules3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

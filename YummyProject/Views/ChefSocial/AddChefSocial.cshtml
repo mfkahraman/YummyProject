@@ -1,0 +1,53 @@
+﻿@model YummyProject.Models.ChefSocial
+
+@{
+    ViewBag.Title = "Şef İçin Sosyal Medya Ekle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+</style>
+
+<br />
+<h2 class="mb-4">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("AddChefSocial", "ChefSocial", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="form-group">
+        <label for="ChefId">Şef Adı</label>
+        @Html.DropDownListFor(x => x.ChefId, (SelectList)ViewBag.Chefs, new { @class = "form-control", @id = "ChefId" })
+        @Html.ValidationMessageFor(x => x.ChefId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="SocialMediaName">Sosyal Medya Adı</label>
+        @Html.DropDownListFor(x => x.SocialMediaName, new SelectList(new[] { "twitter", "facebook", "instagram", "linkedin" }), new { @class = "form-control", @id = "SocialMediaName" })
+        @Html.ValidationMessageFor(x => x.SocialMediaName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Url">Sosyal Medya Adresi</label>
+        @Html.TextBoxFor(x => x.Url, new { @class = "form-control", @id = "Url" })
+        @Html.ValidationMessageFor(x => x.Url, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Ekle</button>
+        <a href="@Url.Action("Index", "ChefSocial")" class="btn btn-secondary">İptal</a>
+    </div>
+}

@@ -1,8 +1,8 @@
-﻿@model PagedList.IPagedList<YummyProject.Models.Product>
+﻿@model PagedList.IPagedList<YummyProject.Models.ContactInfo>
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Ürün Listesi";
+    ViewBag.Title = "İletişim Listesi";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
@@ -63,11 +63,11 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th style="width: 20%;">ÜRÜN ADI</th>
-                <th style="width: 45%;">İÇERİKLER</th>
-                <th style="width: 5%;">FİYAT</th>
-                <th style="width: 10%;">KATEGORİ</th>
-                <th style="width: 10%;">GÖRSEL</th>
+                <th style="width: 20%;">ADRES</th>
+                <th style="width: 10%;">EPOSTA</th>
+                <th style="width: 10%;">TELEFON</th>
+                <th style="width: 40%;">KONUM ADRESİ</th>
+                <th style="width: 10%;">ÇALIŞMA SAATLERİ</th>
                 <th style="width: 10%;">İŞLEMLER</th>
             </tr>
         </thead>
@@ -75,28 +75,17 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.ProductName</td>
-                    <td>@item.Ingrdients</td>
-                    <td>@item.Price</td>
-                    <td>@item.Category.CategoryName</td>
-
-
-                    <td>
-                        @if (!string.IsNullOrEmpty(item.ImageUrl))
-                        {
-                            <img src="@item.ImageUrl" alt="Görsel Yüklenemedi" style="width: 100px; height: 100px;" />
-                        }
-                        else
-                        {
-                            <span class="text-muted">Görsel Yok</span>
-                        }
-                    </td>
+                    <td>@item.Address</td>
+                    <td>@item.Email</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>@item.MapUrl</td>
+                    <td>@item.OpenHours</td>
 
                     <td>
-                        <a href="@Url.Action("UpdateProduct", new { id = item.ProductId })" class="btn btn-primary btn-sm">
+                        <a href="@Url.Action("UpdateContactInfo", new { id = item.ContactInfoId })" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i> Güncelle
                         </a>
-                        <a href="@Url.Action("DeleteProduct", new { id = item.ProductId })" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                        <a href="@Url.Action("DeleteContactInfo", new { id = item.ContactInfoId })" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?')">
                             <i class="fas fa-trash"></i> Sil
                         </a>
 
@@ -107,7 +96,7 @@
     </table>
 </div>
 
-<a href="/Product/AddProduct/" class="btn btn-primary mt-3">Yeni Ürün Ekle</a>
+<a href="/ContactInfo/AddContactInfo/" class="btn btn-primary mt-3">Yeni İletişim Ekle</a>
 
 <div class="text-center">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })

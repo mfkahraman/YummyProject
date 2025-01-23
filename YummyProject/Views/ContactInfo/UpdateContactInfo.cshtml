@@ -1,0 +1,70 @@
+﻿@model YummyProject.Models.ContactInfo
+
+@{
+    ViewBag.Title = "İletişim Güncelle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* Inputlar arasında boşluk bırakmak için */
+    }
+</style>
+
+<br />
+<h2 class="mb-4">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("UpdateContactInfo", "ContactInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="form-group">
+        <label for="ContactInfoId">ID</label>
+        @Html.TextBoxFor(x => x.ContactInfoId, new { @class = "form-control", @readonly = "readonly", @id = "ContactInfoId" })
+    </div>
+
+    <div class="form-group">
+        <label for="Address">Adres</label>
+        @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @id = "Address" })
+        @Html.ValidationMessageFor(x => x.Address, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Eposta</label>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @id = "Email" })
+        @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="PhoneNumber">Telefon</label>
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @id = "PhoneNumber" })
+        @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="MapUrl">Konum Adresi</label>
+        @Html.TextBoxFor(x => x.MapUrl, new { @class = "form-control", @id = "MapUrl" })
+        @Html.ValidationMessageFor(x => x.MapUrl, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="OpenHours">Çalışma Saatleri</label>
+        @Html.TextBoxFor(x => x.OpenHours, new { @class = "form-control", @id = "OpenHours" })
+        @Html.ValidationMessageFor(x => x.OpenHours, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+        <a href="@Url.Action("Index", "ContactInfo")" class="btn btn-secondary">İptal</a>
+    </div>
+}

@@ -10,32 +10,30 @@ using YummyProject.Models;
 
 namespace YummyProject.Controllers
 {
-    public class ProductController : Controller
+    public class ChefController : Controller
     {
         private readonly YummyContext db = new YummyContext();
-
         public ActionResult Index(int? page)
         {
-            int pageSize = 8; 
-            int pageNumber = (page ?? 1);
+            int pageSize = 8; // Number of items per page
+            int pageNumber = (page ?? 1); // Default to page 1 if no page is specified
 
-            var products = db.Products.OrderBy(p => p.ProductId).ToPagedList(pageNumber, pageSize);
+            var products = db.Chefs.OrderBy(p => p.ChefId).ToPagedList(pageNumber, pageSize);
             return View(products);
         }
 
         [HttpGet]
-        public ActionResult AddProduct()
+        public ActionResult AddChef()
         {
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddProduct(Product model, HttpPostedFileBase imageFile)
+        public ActionResult AddChef(Chef model, HttpPostedFileBase imageFile)
         {
             if (imageFile != null && imageFile.ContentLength > 0)
             {
-                var imagePath = SaveImage(imageFile, "products/");
+                var imagePath = SaveImage(imageFile, "chefs/");
                 if (imagePath == null)
                 {
                     ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -49,7 +47,7 @@ namespace YummyProject.Controllers
             {
                 try
                 {
-                    db.Products.Add(model);
+                    db.Chefs.Add(model);
                     int dbresult = db.SaveChanges();
                     TempData["SuccessMessage"] = "Kayıt eklendi.";
 
@@ -76,24 +74,23 @@ namespace YummyProject.Controllers
         }
 
 
-        public ActionResult UpdateProduct(int id)
+        public ActionResult UpdateChef(int id)
         {
-            var value = db.Products.Find(id);
+            var value = db.Chefs.Find(id);
             if (value == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName", value.CategoryId);
             return View(value);
         }
 
         [HttpPost]
-        public ActionResult UpdateProduct(Product model, HttpPostedFileBase imageFile)
+        public ActionResult UpdateChef(Chef model, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
-                var itemToUpdate = db.Products.Find(model.ProductId);
+                var itemToUpdate = db.Chefs.Find(model.ChefId);
                 if (itemToUpdate == null)
                 {
                     ModelState.AddModelError("", "Güncellenecek kayıt bulunamadı.");
@@ -126,20 +123,19 @@ namespace YummyProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewBag.Error = "Lütfen tüm alanları doğru şekilde doldurun.";
             return View(model);
         }
 
-        public ActionResult DeleteProduct(int id)
+        public ActionResult DeleteChef(int id)
         {
-            var itemToDelete = db.Products.Find(id);
+            var itemToDelete = db.Chefs.Find(id);
             if (itemToDelete != null)
             {
                 try
                 {
                     DeleteOldImage(itemToDelete.ImageUrl);
-                    db.Products.Remove(itemToDelete);
+                    db.Chefs.Remove(itemToDelete);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
@@ -200,6 +196,5 @@ namespace YummyProject.Controllers
             }
             return false;
         }
-
     }
 }

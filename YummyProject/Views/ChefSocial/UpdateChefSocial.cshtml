@@ -1,0 +1,59 @@
+﻿@model YummyProject.Models.ChefSocial
+
+@{
+    ViewBag.Title = "Şefin Sosyal Medyalarını Güncelle";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+
+    .form-group {
+        margin-bottom: 20px; /* Inputlar arasında boşluk bırakmak için */
+    }
+</style>
+
+<br />
+<h2 class="mb-4">@ViewBag.Title</h2>
+
+@using (Html.BeginForm("UpdateChefSocial", "ChefSocial", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+
+    <div class="form-group">
+        <label for="ChefSocialId">ID</label>
+        @Html.TextBoxFor(x => x.ChefSocialId, new { @class = "form-control", @readonly = "readonly", @id = "ChefSocialId" })
+    </div>
+
+    <div class="form-group">
+        <label for="ChefName">Şef Adı</label>
+        @Html.TextBox("ChefName", Model.Chef.Name, new { @class = "form-control", @readonly = "readonly", @id = "ChefName" })
+        @Html.HiddenFor(x => x.ChefId)
+        @Html.ValidationMessageFor(x => x.ChefId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="SocialMediaName">Sosyal Medya Adı</label>
+        @Html.DropDownListFor(x => x.SocialMediaName, (SelectList)ViewBag.SocialMediaNames, new { @class = "form-control", @id = "SocialMediaName" })
+        @Html.ValidationMessageFor(x => x.SocialMediaName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label for="Url">Sosyal Medya Adresi</label>
+        @Html.TextBoxFor(x => x.Url, new { @class = "form-control", @id = "Url" })
+        @Html.ValidationMessageFor(x => x.Url, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+        <a href="@Url.Action("Index", "ChefSocial")" class="btn btn-secondary">İptal</a>
+    </div>
+}
