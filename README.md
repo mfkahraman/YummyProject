@@ -1,32 +1,49 @@
-🌟 Project Highlights:
-🌐 Main Interface:
-Accessible to everyone, featuring the restaurant's menu, chef profiles, reservations, testimonials, photo gallery, and event listings—all designed to create a seamless user experience!
+# 🍽️ Restaurant Management System
 
-🔒 Admin Panel:
-Authorized admins can manage all aspects of the website, such as:
-📝 CRUD operations for menu, chefs, reservations, and more.
-📅 Reservation management, including pending and approved bookings.
-✉️ Message management with categorized views (unread/read).
+## 🌟 Project Highlights
 
-🛠️ Technologies Used:
-💻 .NET MVC
-🎨 HTML, CSS, Bootstrap
-⚙️ JavaScript, jQuery
-🗃️ Entity Framework (Code First)
-📄 PagedList NuGet (Paging)
-🪟 Modal Structure (Detailed Views)
-🧩 PartialView, PartialClass
-🔒 Authorization, Session
-🔑 Login, Logout
+### 🌐 Main Interface (Accessible to Everyone)
+- **Features:**
+  - Menu display  
+  - Chef profiles  
+  - Reservation form  
+  - Customer testimonials  
+  - Photo gallery showcasing the restaurant's ambiance  
 
-🚀 Key Features:
-✅ Validation Rules: Ensures data consistency and accuracy.
-💬 User Feedback: Displays error and success messages effectively using TempData, ModelState, and ViewBags.
-🔒 Authorization: Unauthorized users are redirected to the login screen.
-🖼️ Image Management: Images are saved with unique GUID-based names. Old images are automatically removed during updates or deletions.
-🧩 Modular Design: Uses PartialView for clean and maintainable code.
-🪟 Modal Integration: Enables detailed viewing of reservations and messages.
+### 🔒 Admin Panel (Authorized Admins Only)
+- **CRUD Operations:**  
+  Manage all sections of the main interface (menu, chefs, reservations, etc.).  
+- **Reservation Management:**  
+  Approve or reject bookings and view confirmed reservations.  
+- **Message Management:**  
+  Organize and respond to customer inquiries.  
 
+---
+
+## 💡 Key Features
+- **Validation Rules:** Ensures data consistency throughout the application.  
+- **User Feedback:** Displays error and success messages for better user experience.  
+- **Authorization:** Redirects unauthorized users to the login screen.  
+- **Image Management:**  
+  - Unique image names generated with GUIDs.  
+  - Old images automatically deleted during updates or removals.  
+- **Modular Design:** Clean and maintainable structure using `PartialView`.  
+- **Modal Integration:** Provides detailed views for reservations and messages.  
+
+---
+
+## 🛠️ Technologies Used
+- 💻 **.NET MVC**  
+- 🎨 **HTML, CSS, Bootstrap**  
+- ⚙️ **JavaScript, jQuery**  
+- 🗃️ **Entity Framework (Code First)**  
+- 📄 **PagedList NuGet (Paging)**  
+- 🪟 **Modal Structure (Detailed Views)**  
+- 🧩 **PartialView, PartialClass**  
+- 🔒 **Authorization, Session**  
+- 🔑 **Login, Logout**
+
+- 
 ![AboutUs](https://github.com/user-attachments/assets/0af5d8b4-54a9-481a-b22f-b4b83d6028fa)
 ![Giris](https://github.com/user-attachments/assets/a626ac73-f33e-4230-b510-dc49a97395ab)
 ![WhyUs](https://github.com/user-attachments/assets/1f0e652b-b98f-43ed-ac9c-c6f3c1ef9ae2)
