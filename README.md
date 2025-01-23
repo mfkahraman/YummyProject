@@ -1,40 +1,31 @@
-Main Interface: This section is accessible to everyone and includes various features such as:
-•	Products: Displaying the restaurant's menu items.
-•	Chefs: Showcasing the restaurant's chefs.
-•	Reservation Form: Allowing users to make reservations.
-•	Message Form: Enabling users to send messages to the restaurant.
-•	References: Featuring testimonials from important customers.
-•	Photo Gallery: Displaying a gallery of restaurant photos.
-•	Events: Listing special events that customers can book.
+🌐 Project Highlights
+Main Interface (Accessible to everyone):
 
-Admin Panel: This section is accessible only to authorized admins and includes the following functionalities:
-•	CRUD Operations: Admins can create, read, update, and delete data for all sections on the main interface (Products, Chefs, Reservations, Messages, References, Photo Gallery, Events).
-•	Reservations: Admins can handle reservations under the Reservations tab, which includes:
-•	Pending Reservations: Admins can check and approve pending reservations.
-•	Approved Reservations: Admins can view approved reservations.
-•	Messages: Admins can manage messages under the Messages tab, which includes:
-•	Unread Messages: Admins can check unread messages.
-•	Read Messages: Admins can view and manage read messages.
-•	Dropdown Lists: Data for dropdown lists is pulled from related tables to ensure consistency and accuracy.
-•	Modal Structure: Admins can see full descriptions of reservations and messages by clicking the related button, thanks to the modal structure.
+Includes features like menu display, chef profiles, reservation form, customer testimonials, and a photo gallery showcasing the restaurant's ambiance.
+Admin Panel (Authorized admins only):
 
-Some features of the project include:
-•	Validation Rules: Models have validation rules to ensure data integrity.
-•	Error and Success Messages: Controllers and views have the required functions to display error and success messages.
-•	TempData, ModelState Errors, and ViewBags: Utilized TempData, ModelState errors, and ViewBags to manage and display messages and data effectively.
-•	Authorization: Unauthorized users attempting to access the admin panel are redirected to the login screen.
-•	Image Management: When adding images, each image is named with a GUID and included in the project. An image deletion infrastructure is established to remove old images when data is updated or deleted.
-•	Modular Structure: By using the PartialView structure, each part of the project is made modular, resulting in a cleaner and more maintainable codebase.
+⚙️ CRUD Operations: Manage all sections of the main interface (menu, chefs, reservations, etc.).
+📑 Reservation Management: Approve or reject bookings, view confirmed reservations.
+✉️ Message Management: Organize and respond to customer inquiries.
 
-Technologies used:
-•	.NET MVC
-•	HTML, CSS, Bootstrap, JavaScript, jQuery
-•	Entity Framework (Code First)
-•	PagedList NuGet (Paging)
-•	Modal Structure (Message Viewing)
-•	Naming with GUID
-•	PartialView, PartialClass
-•	Authorization, Session, Login, Logout
+💡 Key Features:
+Validation Rules: Ensures data consistency.
+User Feedback: Displays error and success messages.
+Authorization: Redirects unauthorized users to the login screen.
+Image Management:
+Unique image names with GUIDs.
+Old images auto-deleted during updates or removals.
+Modular Design: Clean and maintainable with PartialView.
+Modal Integration: Detailed views for reservations and messages.
+
+🛠️ Technologies Used:
+.NET MVC
+HTML, CSS, Bootstrap, JavaScript, jQuery
+Entity Framework (Code First)
+PagedList NuGet (Paging)
+Modal Structure (Detailed Views)
+PartialView, PartialClass
+Authorization, Session, Login, Logout
 
 
 ![AboutUs](https://github.com/user-attachments/assets/0af5d8b4-54a9-481a-b22f-b4b83d6028fa)
