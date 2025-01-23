@@ -10,32 +10,31 @@ using YummyProject.Models;
 
 namespace YummyProject.Controllers
 {
-    public class ProductController : Controller
+    public class TestimonialController : Controller
     {
         private readonly YummyContext db = new YummyContext();
 
         public ActionResult Index(int? page)
         {
-            int pageSize = 5; 
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
-            var products = db.Products.OrderBy(p => p.ProductId).ToPagedList(pageNumber, pageSize);
+            var products = db.Testimonials.OrderBy(p => p.TestimonialId).ToPagedList(pageNumber, pageSize);
             return View(products);
         }
 
         [HttpGet]
-        public ActionResult AddProduct()
+        public ActionResult AddTestimonial()
         {
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddProduct(Product model, HttpPostedFileBase imageFile)
+        public ActionResult AddTestimonial(Testimonial model, HttpPostedFileBase imageFile)
         {
             if (imageFile != null && imageFile.ContentLength > 0)
             {
-                var imagePath = SaveImage(imageFile, "products/");
+                var imagePath = SaveImage(imageFile, "testimonials/");
                 if (imagePath == null)
                 {
                     ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -49,7 +48,7 @@ namespace YummyProject.Controllers
             {
                 try
                 {
-                    db.Products.Add(model);
+                    db.Testimonials.Add(model);
                     int dbresult = db.SaveChanges();
                     TempData["SuccessMessage"] = "Kayıt eklendi.";
 
@@ -76,24 +75,23 @@ namespace YummyProject.Controllers
         }
 
 
-        public ActionResult UpdateProduct(int id)
+        public ActionResult UpdateTestimonial(int id)
         {
-            var value = db.Products.Find(id);
+            var value = db.Testimonials.Find(id);
             if (value == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName", value.CategoryId);
             return View(value);
         }
 
         [HttpPost]
-        public ActionResult UpdateProduct(Product model, HttpPostedFileBase imageFile)
+        public ActionResult UpdateTestimonial(Testimonial model, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
-                var itemToUpdate = db.Products.Find(model.ProductId);
+                var itemToUpdate = db.Testimonials.Find(model.TestimonialId);
                 if (itemToUpdate == null)
                 {
                     ModelState.AddModelError("", "Güncellenecek kayıt bulunamadı.");
@@ -105,7 +103,7 @@ namespace YummyProject.Controllers
                 {
                     DeleteOldImage(itemToUpdate.ImageUrl);
 
-                    var imagePath = SaveImage(imageFile, "products/");
+                    var imagePath = SaveImage(imageFile, "testimonials/");
                     if (imagePath == null)
                     {
                         ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -126,20 +124,19 @@ namespace YummyProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewBag.Error = "Lütfen tüm alanları doğru şekilde doldurun.";
             return View(model);
         }
 
-        public ActionResult DeleteProduct(int id)
+        public ActionResult DeleteTestimonial(int id)
         {
-            var itemToDelete = db.Products.Find(id);
+            var itemToDelete = db.Testimonials.Find(id);
             if (itemToDelete != null)
             {
                 try
                 {
                     DeleteOldImage(itemToDelete.ImageUrl);
-                    db.Products.Remove(itemToDelete);
+                    db.Testimonials.Remove(itemToDelete);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
@@ -200,6 +197,5 @@ namespace YummyProject.Controllers
             }
             return false;
         }
-
     }
 }

@@ -1,0 +1,102 @@
+﻿@model PagedList.IPagedList<YummyProject.Models.PhotoGallery>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Fotoğraf Galerisi";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<style>
+    /* Sayfa numarası için stil */
+    .pagination {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        list-style: none;
+    }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+            .pagination li a {
+                display: block;
+                padding: 8px 15px;
+                text-decoration: none;
+                background-color: #f8f9fa;
+                border: 1px solid #ddd;
+                color: #007bff;
+                border-radius: 5px;
+            }
+
+                .pagination li a:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
+
+        .pagination .active a {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #007bff;
+        }
+
+        .pagination .disabled a {
+            background-color: #e9ecef;
+            color: #6c757d;
+            pointer-events: none;
+        }
+</style>
+
+<br>
+<h2>@ViewBag.Title</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th style="width: 80%;">GÖRSEL</th>
+                <th style="width: 20%;">FOTOĞRAF SİL</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="@item.ImageUrl" alt="Görsel Yüklenemedi" style="width: 400px; height: 300px;" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">Görsel Yok</span>
+                        }
+                    </td>
+
+                    <td>
+                        <a href="@Url.Action("DeletePhotoGallery", new { id = item.PhotoGalleryId })" class="btn btn-danger btn-sm" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                            <i class="fas fa-trash"></i> Sil
+                        </a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<a href="/PhotoGallery/AddPhotoGallery/" class="btn btn-primary mt-3">Fotoğraf Ekle</a>
+
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }), new PagedListRenderOptions { Display = PagedListDisplayMode.IfNeeded })
+</div>
+

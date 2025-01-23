@@ -10,32 +10,31 @@ using YummyProject.Models;
 
 namespace YummyProject.Controllers
 {
-    public class ProductController : Controller
+    public class AdminProfileController : Controller
     {
         private readonly YummyContext db = new YummyContext();
 
         public ActionResult Index(int? page)
         {
-            int pageSize = 5; 
+            int pageSize = 5;
             int pageNumber = (page ?? 1);
 
-            var products = db.Products.OrderBy(p => p.ProductId).ToPagedList(pageNumber, pageSize);
+            var products = db.Admins.OrderBy(p => p.AdminId).ToPagedList(pageNumber, pageSize);
             return View(products);
         }
 
         [HttpGet]
-        public ActionResult AddProduct()
+        public ActionResult AddAdmin()
         {
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName");
             return View();
         }
 
         [HttpPost]
-        public ActionResult AddProduct(Product model, HttpPostedFileBase imageFile)
+        public ActionResult AddAdmin(Admin model, HttpPostedFileBase imageFile)
         {
             if (imageFile != null && imageFile.ContentLength > 0)
             {
-                var imagePath = SaveImage(imageFile, "products/");
+                var imagePath = SaveImage(imageFile, "admins/");
                 if (imagePath == null)
                 {
                     ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -49,7 +48,7 @@ namespace YummyProject.Controllers
             {
                 try
                 {
-                    db.Products.Add(model);
+                    db.Admins.Add(model);
                     int dbresult = db.SaveChanges();
                     TempData["SuccessMessage"] = "Kayıt eklendi.";
 
@@ -76,24 +75,23 @@ namespace YummyProject.Controllers
         }
 
 
-        public ActionResult UpdateProduct(int id)
+        public ActionResult UpdateAdmin(int id)
         {
-            var value = db.Products.Find(id);
+            var value = db.Admins.Find(id);
             if (value == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName", value.CategoryId);
             return View(value);
         }
 
         [HttpPost]
-        public ActionResult UpdateProduct(Product model, HttpPostedFileBase imageFile)
+        public ActionResult UpdateAdmin(Admin model, HttpPostedFileBase imageFile)
         {
             if (ModelState.IsValid)
             {
-                var itemToUpdate = db.Products.Find(model.ProductId);
+                var itemToUpdate = db.Admins.Find(model.AdminId);
                 if (itemToUpdate == null)
                 {
                     ModelState.AddModelError("", "Güncellenecek kayıt bulunamadı.");
@@ -105,7 +103,7 @@ namespace YummyProject.Controllers
                 {
                     DeleteOldImage(itemToUpdate.ImageUrl);
 
-                    var imagePath = SaveImage(imageFile, "products/");
+                    var imagePath = SaveImage(imageFile, "admins/");
                     if (imagePath == null)
                     {
                         ModelState.AddModelError("ImageUrl", "Sadece .jpg, .jpeg, .png veya .gif dosyaları yükleyebilirsiniz.");
@@ -122,24 +120,25 @@ namespace YummyProject.Controllers
 
                 db.Entry(itemToUpdate).CurrentValues.SetValues(model);
                 db.SaveChanges();
-                TempData["SuccessMessage"] = "Kayıt güncellendi.";
-                return RedirectToAction("Index");
+
+                Session.Clear();
+                TempData["SuccessMessage"] = "Profil güncellendi. Lütfen yeni şifrenizle giriş yapın.";
+                return RedirectToAction("SignIn", "login");
             }
 
-            ViewBag.Categories = new SelectList(db.Categories, "CategoryId", "CategoryName", model.CategoryId);
             ViewBag.Error = "Lütfen tüm alanları doğru şekilde doldurun.";
             return View(model);
         }
 
-        public ActionResult DeleteProduct(int id)
+        public ActionResult DeleteAdmin(int id)
         {
-            var itemToDelete = db.Products.Find(id);
+            var itemToDelete = db.Admins.Find(id);
             if (itemToDelete != null)
             {
                 try
                 {
                     DeleteOldImage(itemToDelete.ImageUrl);
-                    db.Products.Remove(itemToDelete);
+                    db.Admins.Remove(itemToDelete);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
